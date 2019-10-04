@@ -1,1 +1,15 @@
 
+
+public class Fibonaci {
+	public static void main(String[] args) {
+		System.out.println(solution(7));
+	}
+
+	private static  int solution(int n) {
+		// TODO Auto-generated method stub
+
+		if (n<=1)
+			return n;
+		return solution(n-1) + solution(n-2);
+	}
+}
