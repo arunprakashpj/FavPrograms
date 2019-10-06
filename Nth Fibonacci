@@ -15,3 +15,7 @@ public class Fibonaci {
 		return solution(n-1) + solution(n-2);
 	}
 }
+ 
+
+//Time Complexity is O(2^N)  && Space Complexity is O(N)
+// To reduce time complexity to O(N), use Memoization approach / to O(1) use iterative approach
