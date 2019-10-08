@@ -1,1 +1,68 @@
 
+// Recursive Java program to find key closest to k 
+// in given Binary Search Tree. 
+
+class Solution {
+
+	static int min_diff, min_diff_key, resultVal, resultDiff = 999999999;
+
+	static class Node {
+		int key;
+
+		Node left, right;
+	};
+
+	static Node newnode(int key) {
+
+		Node node = new Node();
+		node.key = key;
+		node.left = node.right = null;
+		return node;
+	}
+
+	static void closestNode(Node root, int k) {
+		if (root == null)
+			return;
+
+		if (root.key == k) {
+			resultVal = root.key;
+			resultDiff = Math.abs(root.key - k);
+			return;
+		}
+
+		if (root.key > k) {
+
+			if (resultDiff > Math.abs(root.key - k)) {
+				resultDiff = Math.abs(root.key - k);
+				resultVal = root.key;
+			}
+			closestNode(root.left, k);
+		}
+		if (root.key < k) {
+
+			if (resultDiff > Math.abs(root.key - k)) {
+				resultDiff = Math.abs(root.key - k);
+				resultVal = root.key;
+			}
+			closestNode(root.right, k);
+		}
+	}
+
+	public static void main(String args[]) {
+
+		Node root = newnode(9);
+		root.left = newnode(4);
+		root.right = newnode(10);
+		root.left.left = newnode(3);
+		root.left.right = newnode(6);
+		root.left.right.left = newnode(5);
+		root.left.right.right = newnode(7);
+		root.right.right = newnode(22);
+		root.right.right.left = newnode(20);
+		int k = 18;
+		closestNode(root, k);
+		System.out.println("---Result Value---" + resultVal);
+		System.out.println("---Result Diff---" + resultDiff);
+
+	}
+}
