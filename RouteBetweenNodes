@@ -1,9 +1,85 @@
+package practise;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
+public class RouteBetweenNodes {
 
-Class RouteBetweenNodes {
+	enum State {
+		Visited, Unvisited, Visiting
+	};
 
+	class Graph {
+		
+		 private ArrayList<Integer> Nodes[];
+	    Graph(int v) 
+	    { 
+	 
+	    	Nodes = new ArrayList[v]; 
+	        for (int i=0; i<v; ++i) 
+	            Nodes[i] = new ArrayList(); 
+	    }
+	    
+		public void addEdge(Node node1, Node node2) {
+			node1.children.add(node2);
+		}
+	}
 
-enum State {Unvisited, Visited, Visiting }
+	static public class Node {
+		public int value;
+		public State state;
+		ArrayList<Node> children;
+
+		Node(int value) {
+			this.value = value;
+			this.state = State.Unvisited;
+			this.children = new ArrayList<Node>();
+		}
+
+		public void addChild() {
+			children = new ArrayList<Node>();
+		}
+
+		public ArrayList<Node> getAdjacent() {
+			return children;
+
+		}
+	}
+
+	boolean getRouteBetweenNodes(Graph g, Node start, Node end) {
+		if (start == end) {
+			return true;
+		}
+
+		Queue<Node> q = new LinkedList<Node>();
+
+		start.state = State.Visiting;
+		q.add(start);
+		Node temp = null;
+		while (!q.isEmpty()) {
+			temp = q.remove();
+			if (temp != null) {
+				for (Node node : temp.getAdjacent()) {
+					if (node.state == State.Unvisited) {
+						if (node == end)
+							return true;
+						else {
+							node.state = State.Visiting;
+							q.add(node);
+						}
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public static void main(String[] args) {
+		// Graph g = new Graph(5);
+
+		// getRouteBetweenNodes(g,)
+	}
 
 }
