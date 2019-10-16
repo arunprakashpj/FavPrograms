@@ -1,10 +1,14 @@
 
 class CreateBSTFromArray {
 
+public getBST(input){
+}
 public static void main(){
 int arr[] = null;
 getBST(arr);
 
 }
+
+
 
 }
