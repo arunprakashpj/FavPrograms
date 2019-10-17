@@ -1,14 +1,35 @@
+package practise;
 
-class CreateBSTFromArray {
+public class ArrayToBST {
 
-public getBST(input){
-}
-public static void main(){
-int arr[] = null;
-getBST(arr);
+	public static void main(String[] args) {
+		ArrayToBST tree = new ArrayToBST();
+		int arr[] = new int[] { 1, 2, 3, 4, 5, 6, 7 };
+		Node root = null;
+		root = tree.sortedArrayToBST(arr, 0, arr.length - 1);
+		tree.preOrder(root);
+	}
 
-}
+	private void preOrder(Node root) {
+		// TODO Auto-generated method stub
+		if (root == null)
+			return;
+		System.out.println(root.data);
+		preOrder(root.left);
+		preOrder(root.right);
 
+	}
 
+	private Node sortedArrayToBST(int arr[], int start, int last) {
+		// TODO Auto-generated method stub
 
+		if (start > last)
+			return null;
+
+		int mid = (start + last) / 2;
+		Node node = new Node(arr[mid]);
+		node.left = sortedArrayToBST(arr, start, mid - 1);
+		node.right = sortedArrayToBST(arr, mid + 1, last);
+		return node;
+	}
 }
